@@ -1,11 +1,11 @@
 # Virginia Trails & Breweries 🍺🏞️🚴
 
-A personal project showcasing hiking trails, biking routes, and craft breweries across Virginia, with an interactive map framework for exploring locations statewide.
+Virginia offers hundreds of miles of trails for hiking and biking, including more than 550 miles of the Appalachian Trail alone, plus countless local and regional paths spanning forests, parks, and scenic byways throughout the state. On top of outdoor adventure, the Commonwealth boasts well over 100 breweries, making it a vibrant beer and cider destination where you can unwind after a day on the trail. Beer has deep roots here — from early colonial brews in the 1600s to a booming modern craft beer scene that celebrates centuries of brewing tradition and tasting room culture. Come with us and explore the beauty and crisp cold beers!
 
 ## 🌄 What This Site Covers
 - Over 500 miles of the Appalachian Trail plus thousands of miles of additional hiking trails
 - Road cycling routes, greenways, and mountain biking terrain across Virginia
-- A craft beer scene dating back to colonial times with 300+ breweries statewide
+- A craft beer scene dating back to colonial times with 100+ breweries statewide
 
 ## 🗺️ Interactive Maps
 The site includes an expandable iframe-based map framework designed to display:
