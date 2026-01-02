@@ -1,224 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Virginia Trails & Breweries</title>
-  <meta name="description" content="Explore hiking trails, biking routes, and craft breweries across Virginia.">
-
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    /* NAV BAR */
-    nav {
-      background: #2e3b2f;
-      padding: 10px 20px;
-    }
-
-    nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav li {
-      margin-right: 15px;
-    }
-
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* HERO */
-    .hero {
-      background-image: url("hero.jpg"); /* replace later */
-      background-size: cover;
-      background-position: center;
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-    }
-
-    main {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    /* ABOUT US HIGHLIGHT */
-    #about {
-      background: #f4f4f4;
-      padding: 25px;
-      border-left: 5px solid #2e3b2f;
-    }
-
-    /* MAP STYLES */
-    .map-buttons {
-      margin-bottom: 10px;
-    }
-
-    .map-buttons button {
-      padding: 8px 12px;
-      margin-right: 5px;
-      cursor: pointer;
-    }
-
-    .map-container {
-      width: 100%;
-      height: 450px;
-      position: relative;
-    }
-
-    .map-frame {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: none;
-    }
-
-    .map-frame.active {
-      display: block;
-    }
-
-    footer {
-      background: #2e3b2f;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
-<body>
+<body class="homepage is-preload">
+<div id="page-wrapper">
 
-  <!-- NAVIGATION -->
-  <nav>
+  <!-- Header -->
+  <header id="header">
+    <div class="logo container">
+      <div>
+        <h1><a href="index.html" id="logo">Virginia Trails & Breweries</a></h1>
+        <p>Hiking, biking, and craft beer across the Commonwealth</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav id="nav">
     <ul>
+      <li class="current"><a href="#banner">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#hiking">Hiking</a></li>
-      <li><a href="#biking">Biking</a></li>
+      <li><a href="#trails">Trails</a></li>
       <li><a href="#breweries">Breweries</a></li>
       <li><a href="#maps">Maps</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero">
-    <h1>Virginia Trails & Breweries</h1>
-    <p>Hiking, biking, and craft beer across the Commonwealth</p>
-  </header>
+  <!-- Banner / Hero -->
+  <section id="banner">
+    <div class="content">
+      <h2>Explore Virginia Outdoors & Craft Beer</h2>
+      <p>From mountain trails to cold pints — discover it all</p>
+      <a href="#about" class="button scrolly">Start Exploring</a>
+    </div>
+  </section>
 
-  <main>
+  <!-- Main -->
+  <section id="main">
+    <div class="container">
+      <div class="row gtr-200">
+        <div class="col-12">
 
-    <!-- ABOUT -->
-    <section id="about">
-      <h2>About Us</h2>
-      <p>
-        Virginia offers hundreds of miles of trails for hiking and biking, including more than
-        550 miles of the Appalachian Trail alone, plus countless local and regional paths spanning
-        forests, parks, and scenic byways throughout the state.
-      </p>
-      <p>
-        On top of outdoor adventure, the Commonwealth boasts well over 100 breweries, making it a
-        vibrant beer and cider destination where you can unwind after a day on the trail.
-        Beer has deep roots here — from early colonial brews in the 1600s to a booming modern craft
-        beer scene that celebrates centuries of brewing tradition and tasting room culture.
-      </p>
-      <p><strong>Come with us and explore the beauty and crisp cold beers!</strong></p>
-    </section>
+          <!-- ABOUT US -->
+          <section id="about" class="box highlight">
+            <header>
+              <h2>About Us</h2>
+              <p>Adventure by day. Breweries by night.</p>
+            </header>
+            <p>
+              Virginia offers hundreds of miles of trails for hiking and biking, including more than
+              550 miles of the Appalachian Trail alone, plus countless local and regional paths spanning
+              forests, parks, and scenic byways throughout the state.
+            </p>
+            <p>
+              On top of outdoor adventure, the Commonwealth boasts well over 100 breweries, making it a
+              vibrant beer and cider destination where you can unwind after a day on the trail.
+              Beer has deep roots here — from early colonial brews in the 1600s to a booming modern craft
+              beer scene that celebrates centuries of brewing tradition and tasting room culture.
+            </p>
+            <p><strong>Come with us and explore the beauty and crisp cold beers!</strong></p>
+          </section>
 
-    <!-- HIKING -->
-    <section id="hiking">
-      <h2>🏞️ Hiking</h2>
-      <p>
-        Virginia offers over 500 miles of the Appalachian Trail and thousands more miles of state
-        park and backcountry trails.
-      </p>
-    </section>
+        </div>
 
-    <!-- BIKING -->
-    <section id="biking">
-      <h2>🚴 Biking</h2>
-      <p>
-        From paved greenways to challenging mountain routes, Virginia has terrain for every type
-        of cyclist.
-      </p>
-    </section>
+        <!-- FEATURES -->
+        <div class="col-12">
+          <section id="trails" class="box features">
+            <h2 class="major"><span>What You'll Find</span></h2>
+            <div>
+              <div class="row">
 
-    <!-- BREWERIES -->
-    <section id="breweries">
-      <h2>🍺 Breweries</h2>
-      <p>
-        Virginia’s craft beer tradition dates back to colonial times and now includes over
-        300 breweries statewide.
-      </p>
-    </section>
+                <!-- Hiking -->
+                <div class="col-4 col-12-medium">
+                  <section class="box feature">
+                    <a href="#" class="image featured">
+                      <img src="images/pic01.jpg" alt="Virginia Hiking Trails" />
+                    </a>
+                    <h3>🏞️ Hiking</h3>
+                    <p>
+                      Appalachian Trail sections, state parks, and scenic backcountry routes across Virginia.
+                    </p>
+                  </section>
+                </div>
 
-    <!-- MAPS -->
-    <section id="maps">
-      <h2>🗺️ Interactive Maps</h2>
+                <!-- Biking -->
+                <div class="col-4 col-12-medium">
+                  <section class="box feature">
+                    <a href="#" class="image featured">
+                      <img src="images/pic02.jpg" alt="Virginia Biking Trails" />
+                    </a>
+                    <h3>🚴 Biking</h3>
+                    <p>
+                      Road cycling, greenways, and mountain bike trails for all skill levels.
+                    </p>
+                  </section>
+                </div>
 
-      <div class="map-buttons">
-        <button onclick="showMap('hiking-map')">Hiking Trails</button>
-        <button onclick="showMap('biking-map')">Bike Trails</button>
-        <button onclick="showMap('brewery-map')">Breweries</button>
+                <!-- Breweries -->
+                <div class="col-4 col-12-medium">
+                  <section id="breweries" class="box feature">
+                    <a href="#" class="image featured">
+                      <img src="images/pic03.jpg" alt="Virginia Breweries" />
+                    </a>
+                    <h3>🍺 Breweries</h3>
+                    <p>
+                      Over 300 breweries and cideries rooted in centuries of Virginia beer history.
+                    </p>
+                  </section>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- MAPS -->
+        <div class="col-12">
+          <section id="maps" class="box">
+            <h2 class="major"><span>Interactive Maps</span></h2>
+
+            <ul class="actions">
+              <li><a href="#" class="button" onclick="showMap('hiking-map')">Hiking</a></li>
+              <li><a href="#" class="button" onclick="showMap('biking-map')">Biking</a></li>
+              <li><a href="#" class="button" onclick="showMap('brewery-map')">Breweries</a></li>
+            </ul>
+
+            <div style="height: 450px;">
+              <iframe id="hiking-map" class="map-frame" src="PASTE_HIKING_MAP_URL"></iframe>
+              <iframe id="biking-map" class="map-frame" src="PASTE_BIKING_MAP_URL"></iframe>
+              <iframe id="brewery-map" class="map-frame" src="PASTE_BREWERY_MAP_URL"></iframe>
+            </div>
+          </section>
+        </div>
+
       </div>
+    </div>
+  </section>
 
-      <div class="map-container">
-        <iframe id="hiking-map" class="map-frame"
-          src="PASTE_HIKING_MAP_EMBED_URL_HERE" loading="lazy"></iframe>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <section>
+        <h2 class="major"><span>Virginia Trails & Breweries</span></h2>
+        <p>
+          Built to share the best hiking, biking, and brewery experiences across Virginia.
+        </p>
+      </section>
 
-        <iframe id="biking-map" class="map-frame"
-          src="PASTE_BIKING_MAP_EMBED_URL_HERE" loading="lazy"></iframe>
-
-        <iframe id="brewery-map" class="map-frame"
-          src="PASTE_BREWERY_MAP_EMBED_URL_HERE" loading="lazy"></iframe>
+      <div id="copyright">
+        <ul class="menu">
+          <li>&copy; 2026 Virginia Trails & Breweries</li>
+          <li>Design: HTML5 UP</li>
+        </ul>
       </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 Virginia Trails & Breweries</p>
+    </div>
   </footer>
 
-  <script>
-    function showMap(mapId) {
-      document.querySelectorAll('.map-frame')
-        .forEach(map => map.classList.remove('active'));
+</div>
 
-      document.getElementById(mapId).classList.add('active');
-    }
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
-    showMap('hiking-map');
-  </script>
+<script>
+  function showMap(mapId) {
+    document.querySelectorAll('.map-frame').forEach(m => m.style.display = 'none');
+    document.getElementById(mapId).style.display = 'block';
+  }
+  showMap('hiking-map');
+</script>
 
 </body>
 </html>
