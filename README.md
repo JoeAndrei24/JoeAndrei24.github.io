@@ -1,6 +1,6 @@
 # Virginia Trails & Breweries 🍺🏞️🚴
 
-Virginia Trails & Breweries is a personal web project dedicated to exploring hiking trails, biking routes, and craft breweries across the Commonwealth of Virginia. The site blends outdoor adventure with Virginia’s rich brewing history, all presented in a clean, easy-to-navigate layout.
+Virginia Trails & Breweries is a personal web project built on a custom HTML5 UP template, designed to showcase hiking trails, biking routes, and craft breweries across the Commonwealth of Virginia. The site blends outdoor adventure with Virginia’s deep-rooted beer culture in a clean, responsive layout.
 
 ## 🌄 About the Project
 Virginia offers hundreds of miles of trails for hiking and biking, including more than 550 miles of the Appalachian Trail alone, plus countless local and regional paths spanning forests, parks, and scenic byways throughout the state.
@@ -9,21 +9,25 @@ Beyond the trails, the Commonwealth boasts well over 100 breweries, making it a 
 
 Come explore the beauty of Virginia and enjoy crisp, cold beers along the way.
 
-## 🧭 Site Features
-- Navigation bar with anchor links (About, Hiking, Biking, Breweries, Maps)
+## 🧭 Site Structure & Features
+- Responsive layout using the **HTML5 UP “TXT” template**
+- Navigation with anchor links (Home, About, Trails, Breweries, Maps)
 - Hero banner introducing the site’s theme
 - Highlighted “About Us” section
-- Dedicated sections for hiking, biking, and breweries
-- Interactive map framework using iframe embeds
-- Mobile-friendly layout compatible with GitHub Pages
+- Feature cards for:
+  - 🏞️ Hiking trails
+  - 🚴 Biking routes
+  - 🍺 Breweries
+- Interactive iframe-based map framework
+- Fully compatible with GitHub Pages
 
 ## 🗺️ Interactive Maps
-The site includes a flexible iframe-based map framework designed to display:
+The site includes a flexible map framework designed to support:
 - Hiking trail maps
 - Biking route maps
 - Brewery location maps
 
-Map data sources and layers will continue to be expanded over time.
+Map embeds and data sources will be added and expanded over time.
 
 ## 🔗 Live Website
 👉 https://yourusername.github.io
@@ -32,17 +36,18 @@ Map data sources and layers will continue to be expanded over time.
 - HTML5
 - CSS3
 - JavaScript
+- HTML5 UP (TXT template)
 - GitHub Pages
 
 ## 📌 Purpose
-This project is built to share outdoor recreation opportunities and local breweries in Virginia while serving as a foundation for future enhancements such as richer map data, filtering, and expanded content.
+This project exists to share outdoor recreation opportunities and local breweries in Virginia while serving as a scalable foundation for future enhancements, including richer map data and expanded content.
 
 ## 🚧 Roadmap
-- Embed live Virginia trail and brewery map data
+- Embed live Virginia trail and brewery maps
+- Replace placeholder images with real Virginia photography
 - Improve mobile navigation and usability
-- Split sections into separate pages without rewriting core layout
+- Split hiking, biking, and brewery sections into separate pages
 - Add filters by region, difficulty, and activity type
-- Expand trail and brewery information
 
 ---
 
