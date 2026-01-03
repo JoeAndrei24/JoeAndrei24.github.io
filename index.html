@@ -1,16 +1,21 @@
-<link rel="stylesheet" href="assets/css/style.css">
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
-
 <!DOCTYPE HTML>
 <html>
 <head>
   <title>Virginia Trails & Breweries</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <!-- Template styles -->
   <link rel="stylesheet" href="assets/css/main.css" />
+
+  <!-- Your custom styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 </head>
 
 <body class="homepage is-preload">
@@ -136,11 +141,12 @@
               <li><a href="#" class="button" onclick="showMap('brewery-map')">Breweries</a></li>
             </ul>
 
-            <div style="height: 450px;">
-              <iframe id="hiking-map" class="map-frame" src="PASTE_HIKING_MAP_URL"></iframe>
-              <iframe id="biking-map" class="map-frame" src="PASTE_BIKING_MAP_URL"></iframe>
-              <iframe id="brewery-map" class="map-frame" src="PASTE_BREWERY_MAP_URL"></iframe>
+            <div>
+              <div id="hiking-map" class="leaflet-map"></div>
+              <div id="biking-map" class="leaflet-map"></div>
+              <div id="brewery-map" class="leaflet-map"></div>
             </div>
+
           </section>
         </div>
 
@@ -178,11 +184,40 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Your Leaflet logic -->
 <script>
-  function showMap(mapId) {
-    document.querySelectorAll('.map-frame').forEach(m => m.style.display = 'none');
-    document.getElementById(mapId).style.display = 'block';
+  const maps = {};
+
+  function initMap(id, lat, lng, zoom) {
+    const map = L.map(id).setView([lat, lng], zoom);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    return map;
   }
+
+  function showMap(mapId) {
+    document.querySelectorAll('.leaflet-map').forEach(m => m.style.display = 'none');
+    document.getElementById(mapId).style.display = 'block';
+
+    setTimeout(() => {
+      maps[mapId].invalidateSize();
+    }, 200);
+  }
+
+  maps['hiking-map'] = initMap('hiking-map', 37.5, -78.7, 7);
+  maps['biking-map'] = initMap('biking-map', 37.5, -78.7, 7);
+  maps['brewery-map'] = initMap('brewery-map', 37.5, -78.7, 7);
+
+  L.marker([37.8651, -78.5277]).addTo(maps['hiking-map']).bindPopup('Shenandoah National Park');
+  L.marker([36.8529, -75.9780]).addTo(maps['biking-map']).bindPopup('Virginia Beach Trails');
+  L.marker([38.0293, -78.4767]).addTo(maps['brewery-map']).bindPopup('Charlottesville Breweries');
+
   showMap('hiking-map');
 </script>
 
