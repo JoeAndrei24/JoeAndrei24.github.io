@@ -3110,3 +3110,20 @@ input, select, textarea {
 			}
 
 	}
+/* ================================
+   Leaflet Map Overrides
+   ================================ */
+
+#map {
+  width: 100%;
+  height: 450px;
+  border-radius: 6px;
+}
+
+.leaflet-container {
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 6px;
+}
