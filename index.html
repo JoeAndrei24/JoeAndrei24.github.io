@@ -158,19 +158,54 @@
 <!-- Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- Marker Cluster -->
+<!-- Marker Cluster (optional, safe to keep) -->
 <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
-<!-- Map Logic -->
+<!-- Map Setup -->
 <script>
-  <script>
+  const maps = {};
+
+  function initMap(id, lat, lng, zoom) {
+    const map = L.map(id).setView([lat, lng], zoom);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    return map;
+  }
+
+  function showMap(mapId) {
+    document.querySelectorAll('.leaflet-map').forEach(m => {
+      m.style.display = 'none';
+    });
+
+    const el = document.getElementById(mapId);
+    el.style.display = 'block';
+
+    setTimeout(() => {
+      maps[mapId].invalidateSize();
+    }, 200);
+  }
+
+  // Initialize maps (Virginia-centered)
+  maps['hiking-map'] = initMap('hiking-map', 37.5, -78.7, 7);
+  maps['biking-map'] = initMap('biking-map', 37.5, -78.7, 7);
+  maps['brewery-map'] = initMap('brewery-map', 37.5, -78.7, 7);
+</script>
+
+<!-- GeoJSON Data -->
+<script>
   const hikingLayer = L.layerGroup().addTo(maps['hiking-map']);
   const bikingLayer = L.layerGroup().addTo(maps['biking-map']);
   const breweryLayer = L.layerGroup().addTo(maps['brewery-map']);
 
   function loadGeoJSON(url, layer, color) {
     fetch(url)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Failed to load ${url}`);
+        return res.json();
+      })
       .then(data => {
         L.geoJSON(data, {
           pointToLayer: (feature, latlng) =>
@@ -196,6 +231,9 @@
   loadGeoJSON('assets/data/hiking.geojson', hikingLayer, '#78a372');
   loadGeoJSON('assets/data/biking.geojson', bikingLayer, '#5b8a94');
   loadGeoJSON('assets/data/breweries.geojson', breweryLayer, '#d19a66');
+
+  // Default visible map
+  showMap('hiking-map');
 </script>
 
 </body>
