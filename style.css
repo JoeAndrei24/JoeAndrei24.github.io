@@ -1,108 +1,49 @@
 /*
-    Virginia Trails & Breweries - Custom Map Styles
-    Integrates Leaflet with HTML5 UP "TXT" Template
+  Virginia Trails & Breweries - Leaflet Fixes for HTML5 UP (TXT)
 */
 
-/* CRITICAL: Allow Leaflet tiles to render inside HTML5 UP box */
+/* CRITICAL: HTML5 UP box overflow fix */
 #maps.box {
-    overflow: visible !important;
+  overflow: visible !important;
 }
 
-/* --- 1. Map Container Setup --- */
+/* CRITICAL: Map container MUST have layout */
 #va-map {
-    height: 550px;           /* Required height for map visibility */
-    width: 100%;
-    margin-top: 2em;
-    border-radius: 8px;      /* Matches template's image border-radius */
-    border: 1px solid #E7EAE8;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    z-index: 1;              /* Keeps map below the sticky navigation bar */
+  width: 100%;
+  height: 550px;
+  min-height: 350px;
+  margin-top: 2em;
+  position: relative;
+  z-index: 0;
+  background: #ddd; /* debug-safe */
+  border-radius: 8px;
+  border: 1px solid #E7EAE8;
 }
 
-/* --- 2. Template Conflict Fixes --- */
-/* Your main.css applies a wide 2em line-height and potential overlays. 
-   These rules ensure the Leaflet map tiles and popups stay clean. */
-
+/* Prevent template image rules from breaking tiles */
 .leaflet-container img {
-    max-width: none !important;
-    padding: 0 !important;
-    background: none !important;
+  max-width: none !important;
+  padding: 0 !important;
+  background: none !important;
 }
 
-/* Removes the pattern overlay that TXT template puts on images */
-.leaflet-container :before, 
-.leaflet-container :after {
-    display: none !important;
-}
-
-/* Corrects the text spacing inside popups */
+/* Popup readability */
 .leaflet-popup-content-wrapper {
-    line-height: 1.5em;
-    font-family: 'Open Sans', sans-serif;
-    color: #6b7770;
-    padding: 5px;
+  line-height: 1.5em;
+  color: #6b7770;
 }
 
-.leaflet-popup-content b, 
-.leaflet-popup-content strong {
-    color: #006376; /* Matches template link color */
-}
-
-/* --- 3. Map Toggle Buttons --- */
-/* Organizes the buttons in a clean row above the map */
-
+/* Map buttons */
 #maps .actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2em 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2em;
 }
 
-#maps .actions li {
-    padding: 0;
-    margin: 0;
-}
-
-#maps .actions li .button {
-    min-width: 160px;
-    padding: 0.75em 1.5em;
-    font-size: 1em;
-}
-
-/* Color Coding for Buttons */
-#toggle-hiking { 
-    background-color: #78a372 !important; 
-} /* Earthy Green */
-
-#toggle-biking { 
-    background-color: #5b8a94 !important; 
-} /* Steel Blue */
-
-#toggle-breweries { 
-    background-color: #d19a66 !important; 
-} /* Amber/Beer Gold */
-
-/* Button Hover Effects */
-#maps .actions li .button:hover {
-    filter: brightness(110%);
-    opacity: 0.9;
-}
-
-/* --- 4. Responsive Adjustments --- */
+/* Mobile */
 @media screen and (max-width: 736px) {
-    #va-map {
-        height: 400px; /* Shorter map for mobile users */
-    }
-
-    #maps .actions {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #maps .actions li .button {
-        width: 100%;
-    }
+  #va-map {
+    height: 400px;
+  }
 }
