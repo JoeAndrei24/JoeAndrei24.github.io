@@ -1,0 +1,49 @@
+/*
+  Virginia Trails & Breweries - Leaflet Fixes for HTML5 UP (TXT)
+*/
+
+/* CRITICAL: HTML5 UP box overflow fix */
+#maps.box {
+  overflow: visible !important;
+}
+
+/* CRITICAL: Map container MUST have layout */
+#va-map {
+  width: 100%;
+  height: 550px;
+  min-height: 350px;
+  margin-top: 2em;
+  position: relative;
+  z-index: 0;
+  background: #ddd; /* debug-safe */
+  border-radius: 8px;
+  border: 1px solid #E7EAE8;
+}
+
+/* Prevent template image rules from breaking tiles */
+.leaflet-container img {
+  max-width: none !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+/* Popup readability */
+.leaflet-popup-content-wrapper {
+  line-height: 1.5em;
+  color: #6b7770;
+}
+
+/* Map buttons */
+#maps .actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2em;
+}
+
+/* Mobile */
+@media screen and (max-width: 736px) {
+  #va-map {
+    height: 400px;
+  }
+}
