@@ -3,6 +3,11 @@
     Integrates Leaflet with HTML5 UP "TXT" Template
 */
 
+/* CRITICAL: Allow Leaflet tiles to render inside HTML5 UP box */
+#maps.box {
+    overflow: visible !important;
+}
+
 /* --- 1. Map Container Setup --- */
 #va-map {
     height: 550px;           /* Required height for map visibility */
