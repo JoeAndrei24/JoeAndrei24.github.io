@@ -6,24 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
   <link rel="stylesheet" href="assets/css/main.css" />
-
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
 
   <style>
+    /* Warm Background Adjustment */
+    body, #page-wrapper, #main {
+      background-color: #fdfaf5 !important; /* Soft warm white */
+    }
+
+    /* Under Construction Banner */
     .construction-banner {
       background-color: #fce14d;
       color: #333;
@@ -39,9 +35,28 @@
       position: relative;
       z-index: 9999;
     }
-    .construction-banner span {
-      font-size: 1.2rem;
+
+    /* Feature Photo Styles */
+    .feature-image-container {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 1.5em;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Professional shadow */
+      transition: transform 0.3s ease;
     }
+
+    .feature-image-container:hover {
+      transform: translateY(-5px); /* Interactive lift effect */
+    }
+
+    .feature-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures photos don't stretch */
+    }
+
     @media screen and (max-width: 736px) {
       .construction-banner {
         font-size: 0.9rem;
@@ -99,12 +114,7 @@
         </header>
         <p>
           Virginia offers hundreds of miles of trails for hiking and biking, including more than
-          550 miles of the Appalachian Trail alone, plus countless local and regional paths spanning
-          forests, parks, and scenic natural landscapes throughout the state.
-        </p>
-        <p>
-          The Commonwealth also boasts over 100 breweries rooted in centuries of brewing tradition —
-          the perfect reward after a day on the trail.
+          550 miles of the Appalachian Trail alone.
         </p>
         <p><strong>Come explore the beauty and crisp cold beers!</strong></p>
       </section>
@@ -115,6 +125,9 @@
 
           <div class="col-4 col-12-medium">
             <section class="box feature">
+              <div class="feature-image-container">
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=80" alt="Hiking Trail">
+              </div>
               <h3>🏞️ Hiking</h3>
               <p>Appalachian Trail sections, state parks, and scenic backcountry routes.</p>
             </section>
@@ -122,6 +135,9 @@
 
           <div class="col-4 col-12-medium">
             <section class="box feature">
+              <div class="feature-image-container">
+                <img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=500&q=80" alt="Biking Path">
+              </div>
               <h3>🚴 Biking</h3>
               <p>Road cycling, greenways, and mountain bike trails for all skill levels.</p>
             </section>
@@ -129,6 +145,9 @@
 
           <div class="col-4 col-12-medium" id="breweries">
             <section class="box feature">
+              <div class="feature-image-container">
+                <img src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=500&q=80" alt="Craft Beer">
+              </div>
               <h3>🍺 Breweries</h3>
               <p>Clustered brewery locations across the Commonwealth.</p>
             </section>
@@ -139,13 +158,11 @@
 
       <section id="maps" class="box">
         <h2 class="major"><span>Interactive Map</span></h2>
-
         <ul class="actions">
           <li><a href="#" class="button" id="toggle-hiking">Hiking</a></li>
           <li><a href="#" class="button" id="toggle-biking">Biking</a></li>
           <li><a href="#" class="button" id="toggle-breweries">Breweries</a></li>
         </ul>
-
         <div id="va-map" class="leaflet-map"></div>
       </section>
 
@@ -182,19 +199,16 @@
 <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
 
 <script>
-  // 1️⃣ Initialize ONE map
+  // Map Initialization
   const map = L.map('va-map').setView([37.5, -78.7], 7);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // 2️⃣ Create layers
   const hikingLayer = L.layerGroup().addTo(map);
   const bikingLayer = L.layerGroup();
   const breweryLayer = L.markerClusterGroup();
 
-  // 3️⃣ Load GeoJSON helper
   function loadGeoJSON(url, layer, color) {
     fetch(url)
       .then(res => res.json())
@@ -210,9 +224,7 @@
             }),
           onEachFeature: (feature, layer) => {
             let popup = `<strong>${feature.properties.name}</strong>`;
-            if (feature.properties.city) {
-              popup += `<br>${feature.properties.city}`;
-            }
+            if (feature.properties.city) popup += `<br>${feature.properties.city}`;
             layer.bindPopup(popup);
           }
         }).addTo(layer);
@@ -220,31 +232,14 @@
       .catch(err => console.error('GeoJSON error:', err));
   }
 
-  // 4️⃣ Load your data
   loadGeoJSON('assets/data/hiking.geojson', hikingLayer, '#78a372');
   loadGeoJSON('assets/data/biking.geojson', bikingLayer, '#5b8a94');
   loadGeoJSON('assets/data/breweries.geojson', breweryLayer, '#d19a66');
 
-  // 5️⃣ Button controls
-  document.getElementById('toggle-hiking').onclick = e => {
-    e.preventDefault();
-    if (map.hasLayer(hikingLayer)) map.removeLayer(hikingLayer);
-    else map.addLayer(hikingLayer);
-  };
+  document.getElementById('toggle-hiking').onclick = e => { e.preventDefault(); map.hasLayer(hikingLayer) ? map.removeLayer(hikingLayer) : map.addLayer(hikingLayer); };
+  document.getElementById('toggle-biking').onclick = e => { e.preventDefault(); map.hasLayer(bikingLayer) ? map.removeLayer(bikingLayer) : map.addLayer(bikingLayer); };
+  document.getElementById('toggle-breweries').onclick = e => { e.preventDefault(); map.hasLayer(breweryLayer) ? map.removeLayer(breweryLayer) : map.addLayer(breweryLayer); };
 
-  document.getElementById('toggle-biking').onclick = e => {
-    e.preventDefault();
-    if (map.hasLayer(bikingLayer)) map.removeLayer(bikingLayer);
-    else map.addLayer(bikingLayer);
-  };
-
-  document.getElementById('toggle-breweries').onclick = e => {
-    e.preventDefault();
-    if (map.hasLayer(breweryLayer)) map.removeLayer(breweryLayer);
-    else map.addLayer(breweryLayer);
-  };
-
-  // Ensure correct render
   setTimeout(() => map.invalidateSize(), 300);
 </script>
 
