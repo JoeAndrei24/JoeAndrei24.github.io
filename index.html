@@ -43,18 +43,27 @@
       overflow: hidden;
       border-radius: 8px;
       margin-bottom: 1.5em;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Professional shadow */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
       transition: transform 0.3s ease;
     }
 
     .feature-image-container:hover {
-      transform: translateY(-5px); /* Interactive lift effect */
+      transform: translateY(-5px);
     }
 
     .feature-image-container img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures photos don't stretch */
+      object-fit: cover;
+    }
+
+    /* MAP SIZE ADJUSTMENT */
+    #va-map {
+      width: 100%;
+      height: 700px; /* Much larger frame for better interaction */
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
     }
 
     @media screen and (max-width: 736px) {
@@ -62,6 +71,9 @@
         font-size: 0.9rem;
         flex-direction: column;
         gap: 5px;
+      }
+      #va-map {
+        height: 450px; /* Slightly smaller but still substantial on mobile */
       }
     }
   </style>
@@ -158,12 +170,15 @@
 
       <section id="maps" class="box">
         <h2 class="major"><span>Interactive Map</span></h2>
+        <p style="text-align: center; margin-bottom: 2em;">Toggle layers to find your next adventure.</p>
+        
         <ul class="actions">
           <li><a href="#" class="button" id="toggle-hiking">Hiking</a></li>
           <li><a href="#" class="button" id="toggle-biking">Biking</a></li>
           <li><a href="#" class="button" id="toggle-breweries">Breweries</a></li>
         </ul>
-        <div id="va-map" class="leaflet-map"></div>
+        
+        <div id="va-map"></div>
       </section>
 
     </div>
@@ -236,10 +251,21 @@
   loadGeoJSON('assets/data/biking.geojson', bikingLayer, '#5b8a94');
   loadGeoJSON('assets/data/breweries.geojson', breweryLayer, '#d19a66');
 
-  document.getElementById('toggle-hiking').onclick = e => { e.preventDefault(); map.hasLayer(hikingLayer) ? map.removeLayer(hikingLayer) : map.addLayer(hikingLayer); };
-  document.getElementById('toggle-biking').onclick = e => { e.preventDefault(); map.hasLayer(bikingLayer) ? map.removeLayer(bikingLayer) : map.addLayer(bikingLayer); };
-  document.getElementById('toggle-breweries').onclick = e => { e.preventDefault(); map.hasLayer(breweryLayer) ? map.removeLayer(breweryLayer) : map.addLayer(breweryLayer); };
+  // Toggle Logic
+  document.getElementById('toggle-hiking').onclick = e => { 
+    e.preventDefault(); 
+    map.hasLayer(hikingLayer) ? map.removeLayer(hikingLayer) : map.addLayer(hikingLayer); 
+  };
+  document.getElementById('toggle-biking').onclick = e => { 
+    e.preventDefault(); 
+    map.hasLayer(bikingLayer) ? map.removeLayer(bikingLayer) : map.addLayer(bikingLayer); 
+  };
+  document.getElementById('toggle-breweries').onclick = e => { 
+    e.preventDefault(); 
+    map.hasLayer(breweryLayer) ? map.removeLayer(breweryLayer) : map.addLayer(breweryLayer); 
+  };
 
+  // Recalculate size to ensure tiles load correctly in the new large container
   setTimeout(() => map.invalidateSize(), 300);
 </script>
 
