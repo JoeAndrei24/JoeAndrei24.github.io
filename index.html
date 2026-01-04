@@ -163,72 +163,39 @@
 
 <!-- Map Logic -->
 <script>
-  window.addEventListener('load', () => {
-    // Wait for HTML5 UP preload to finish
-    setTimeout(() => {
+  <script>
+  const hikingLayer = L.layerGroup().addTo(maps['hiking-map']);
+  const bikingLayer = L.layerGroup().addTo(maps['biking-map']);
+  const breweryLayer = L.layerGroup().addTo(maps['brewery-map']);
 
-      const map = L.map('va-map').setView([37.5, -78.7], 7);
+  function loadGeoJSON(url, layer, color) {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        L.geoJSON(data, {
+          pointToLayer: (feature, latlng) =>
+            L.circleMarker(latlng, {
+              radius: 7,
+              fillColor: color,
+              color: '#ffffff',
+              weight: 2,
+              fillOpacity: 0.9
+            }),
+          onEachFeature: (feature, layer) => {
+            let popup = `<strong>${feature.properties.name}</strong>`;
+            if (feature.properties.city) {
+              popup += `<br>${feature.properties.city}`;
+            }
+            layer.bindPopup(popup);
+          }
+        }).addTo(layer);
+      })
+      .catch(err => console.error('GeoJSON load error:', err));
+  }
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
-
-      const hikingLayer = L.layerGroup().addTo(map);
-      const bikingLayer = L.layerGroup().addTo(map);
-      const breweryLayer = L.markerClusterGroup().addTo(map);
-
-      // Sample hiking trail
-      L.geoJSON({
-        "type": "Feature",
-        "geometry": {
-          "type": "LineString",
-          "coordinates": [
-            [-78.5, 38.03],
-            [-78.55, 38.1],
-            [-78.6, 38.15]
-          ]
-        }
-      }, {
-        style: { color: "#2ecc71", weight: 4 }
-      }).addTo(hikingLayer);
-
-      // Sample biking marker
-      L.marker([36.8529, -75.9780])
-        .bindPopup("Virginia Beach Bike Trails")
-        .addTo(bikingLayer);
-
-      // Sample breweries
-      [
-        ["Charlottesville Brewery", 38.0293, -78.4767],
-        ["Richmond Brewery", 37.5407, -77.4360],
-        ["Roanoke Brewery", 37.2709, -79.9414]
-      ].forEach(b => {
-        breweryLayer.addLayer(
-          L.marker([b[1], b[2]]).bindPopup(b[0])
-        );
-      });
-
-      // Buttons
-      document.getElementById('toggle-hiking').onclick = e => {
-        e.preventDefault();
-        map.hasLayer(hikingLayer) ? map.removeLayer(hikingLayer) : map.addLayer(hikingLayer);
-      };
-
-      document.getElementById('toggle-biking').onclick = e => {
-        e.preventDefault();
-        map.hasLayer(bikingLayer) ? map.removeLayer(bikingLayer) : map.addLayer(bikingLayer);
-      };
-
-      document.getElementById('toggle-breweries').onclick = e => {
-        e.preventDefault();
-        map.hasLayer(breweryLayer) ? map.removeLayer(breweryLayer) : map.addLayer(breweryLayer);
-      };
-
-      // FINAL FIX: force render
-      map.invalidateSize();
-
-    }, 500);
-  });
+  loadGeoJSON('assets/data/hiking.geojson', hikingLayer, '#78a372');
+  loadGeoJSON('assets/data/biking.geojson', bikingLayer, '#5b8a94');
+  loadGeoJSON('assets/data/breweries.geojson', breweryLayer, '#d19a66');
 </script>
 
 </body>
